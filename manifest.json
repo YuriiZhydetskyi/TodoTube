@@ -1,0 +1,41 @@
+{
+  "manifest_version": 2,
+  "name": "Todo Tube",
+  "version": "1.0",
+  "description": "Replaces YouTube's sidebar with your Microsoft To Do list",
+  "permissions": [
+    "activeTab",
+    "storage",
+    "identity",
+    "https://graph.microsoft.com/*",
+    "*://*.youtube.com/*"
+  ],
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "todo-tube@temporary-addon"
+    }
+  },
+  "browser_action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "content_scripts": [
+    {
+      "matches": ["*://*.youtube.com/*"],
+      "js": ["content.js"],
+      "css": ["todo-list.css"]
+    }
+  ],
+  "background": {
+    "scripts": ["background.js"],
+    "persistent": false
+  },
+  "options_ui": {
+    "page": "options.html",
+    "open_in_tab": true
+  }
+}
